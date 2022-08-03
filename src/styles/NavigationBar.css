@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#navigation-container {
+    width: 100vw;
+    height: 80px;
+    background-color: rgb(39, 53, 99);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.navigation-button {
+    color: aliceblue;
+    font-size: medium;
+    font-weight: bold;
+    background-color: rgb(39, 53, 99);
+    padding: 5px 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 300ms;
+    margin-right: 10px;
+}
+
+.navigation-locked-button {
+    color: red;
+    font-size: medium;
+    font-weight: bold;
+    background-color: rgb(39, 53, 99);
+    padding: 5px 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 300ms;
+    margin-right: 10px;
+}
+
+.navigation-button:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(39, 53, 99);
+}
+
+#change-container {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    height: 80px;
+    color: aliceblue;
+    font-size: medium;
+    font-weight: bold;
+    border-left: 4px solid black;
+    border-right: 4px solid black;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 20px;
+}
+
+#change-container-text {
+    margin-right: 20px;
+    cursor: default;
+}
+
+#range {
+    display: block;
+    -webkit-appearance: none;
+    background-color: #ffffff;
+    width: 200px;
+    height: 5px;
+    border-radius: 5px;
+    margin: 0 auto;
+    outline: 0;
+}
+
+#rangeLock {
+    display: block;
+    -webkit-appearance: none;
+    background-color: #ff0000;
+    width: 200px;
+    height: 5px;
+    border-radius: 5px;
+    margin: 0 auto;
+    outline: 0;
+}
+
+#range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: #3bd2df;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+#rangeLock::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: #ff0000;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+​ #range::-webkit-slider-thumb:hover {
+    background-color: white;
+    border: 2px solid #3bd2df;
+}
+
+#rangeLock::-webkit-slider-thumb:hover {
+    background-color: rgb(255, 0, 0);
+    border: 2px solid #690909;
+}
+
+​ #range::-webkit-slider-thumb:active {
+    transform: scale(1.1);
+}
+
+#rangeLock::-webkit-slider-thumb:active {
+    transform: scale(1.1);
+}
+
+
+#algorithm-container {
+    display: flex;
+}
