@@ -166,83 +166,32 @@ function App() {
 
     const sort = (left: ArrayType[], right: ArrayType[]) => {
 
-      let i = 0
-      let j = 0
+      let l = 0
+      let r = 0
 
-      while (i < left.length && j < right.length) {
-        if (left[i].number > right[j].number) {
-          const temp = left[i].number
-          left[i].number = right[j].number
-          right[j].number = temp
-          i++
-          if (j + 1 < right.length) {
-            if (right[j].number > right[j + 1].number) {
-              while (right[j].number > right[j + 1].number) {
-                const temp = right[j].number
-                right[j].number = right[j + 1].number
-                right[j + 1].number = temp
-              }
-            } else {
-              j++
-            }
-          }
+      let subArray = []
+
+      while (l < left.length && r < right.length) {
+        if (left[l].number < right[r].number) {
+          subArray.push(left[l])
+          l++
         } else {
-          i++
+          subArray.push(right[r])
+          r++
         }
       }
 
-        return [...left, ...right]
-      // console.log('sort algoritm')
-      // let l = nextLeftIndex
-      // let r = nextLeftIndex + left.length
+      while (l < left.length) {
+        subArray.push(left[l])
+        l++
+      }
 
-      // if (Math.log2(time) % 1 === 0) {
-      //   r = ((r + right.length) / 2)
-      //   if (nextLeftIndex > (arraySizeNumber / 2)) {
-      //     l = arraySizeNumber / 2
-      //   }
-      //   l = 0
-      // }
+      while (r < right.length) {
+        subArray.push(right[r])
+        r++
+      }
 
-      // while (l < r && r < r + right.length) {
-      //   console.log('üstteki şey dönüyo')
-      //   setCurrent(l)
-      //   setSmallestIndex(r)
-
-      //   if (array[l].number <= array[r].number) {
-      //     l++
-      //   } else {
-      //     const temp: ArrayType = array[l]
-      //     array[l] = array[r]
-      //     array[r] = temp
-
-      //     let now = r + 1
-      //     while (array[now - 1].number >= array[now].number && now < r + right.length) {
-      //       console.log('icerdeyiz')
-      //       setCurrent(now)
-      //       setSmallestIndex(now + 1)
-
-      //       const temp: ArrayType = array[now - 1]
-      //       array[now - 1] = array[now]
-      //       array[now] = temp
-
-      //       now += 1
-      //       await timer(1000)
-      //     }
-      //     r++
-      //   }
-      //   setArray([...array])
-      //   await timer(1000)
-      // }
-
-      // if (!(Math.log2(time) % 1 === 0)) {
-      //   nextLeftIndex += right.length
-      // } else {
-      //   nextLeftIndex = right.length * 2
-      // }
-
-      // time += 1
-
+      return [...subArray]
     }
 
     const merge: Function = (array: ArrayType[]) => {
@@ -259,10 +208,8 @@ function App() {
     }
 
     setArray(merge(array))
+
   }
-
-  // ARRAYIN ICINI PARCALARA BÖLÜCEZ AYNI ARRAYIN ICINDE PARCALARI SIRALICAK TEK TEK NASI OLCAK BAKALIM DÜSÜNÜOZ :d
-
 
   const quickSort = () => {
 
@@ -292,6 +239,77 @@ function App() {
 
     setArray(QuickSort(array.slice(0, arraySizeNumber)))
 
+  }
+
+  const heapSort = () => {
+    console.log(array)
+
+    for (let i = array.length - 1; i > 0; i--) {
+
+      let compareIndex = i
+      while (compareIndex > 0) {
+        const PARENT_INDEX = Math.floor((compareIndex - 1) / 2)
+
+        if (array[compareIndex].number > array[PARENT_INDEX].number) {
+          [array[compareIndex], array[PARENT_INDEX]] = [array[PARENT_INDEX], array[compareIndex]]
+          compareIndex = Math.floor((compareIndex - 1) / 2)
+        } else {
+          compareIndex = 0
+        }
+      }
+    }
+
+    for (let last = array.length - 1; last > 0; last--) {
+
+      const max = 0;
+
+      const temp = array[max]
+      array[max] = array[last]
+      array[last] = temp
+      array[last].sorted = true
+
+      let blockLeft = false
+      let blockRight = false
+
+      let compareIndex = 0
+
+      while (array[compareIndex].number < array[(compareIndex * 2) + 1].number || array[compareIndex].number < array[(compareIndex * 2) + 2].number) {
+
+        if (array[(compareIndex * 2) + 1].sorted === true) {
+          blockLeft = true
+          blockRight = true
+        } else if (array[(compareIndex * 2) + 2].sorted === true) {
+          blockRight = true
+        } else {
+          blockLeft = false
+          blockRight = false
+        }
+
+        if (blockLeft === false && blockRight === false) {
+          if (array[(compareIndex * 2) + 1].number > array[(compareIndex * 2) + 2].number) {
+            const temp = array[(compareIndex * 2) + 1]
+            array[(compareIndex * 2) + 1] = array[compareIndex]
+            array[compareIndex] = temp
+            compareIndex = (compareIndex * 2) + 1
+          } else {
+            const temp = array[(compareIndex * 2) + 2]
+            array[(compareIndex * 2) + 2] = array[compareIndex]
+            array[compareIndex] = temp
+            compareIndex = (compareIndex * 2) + 2
+          }
+        } else if (blockLeft === false && blockRight === true) {
+          if (array[compareIndex].number < array[(compareIndex * 2) + 1].number) {
+            const temp = array[(compareIndex * 2) + 1]
+            array[(compareIndex * 2) + 1] = array[compareIndex]
+            array[compareIndex] = temp
+            break
+          }
+        } else if (blockLeft === true && blockRight === true) {
+          break
+        }
+      }
+    }
+    setArray(array)
   }
 
   return (

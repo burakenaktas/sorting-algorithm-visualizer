@@ -9,7 +9,7 @@ interface Props {
     insertionSort: Function,
     bubbleSort: Function,
     mergeSort: Function,
-    quickSort: Function
+    quickSort: Function,
 }
 
 export default function NavigationBar({ lock, arraySize, setArraySize, generateNewArray, selectionSort, insertionSort, bubbleSort, mergeSort, quickSort }: Props) {
@@ -28,7 +28,6 @@ export default function NavigationBar({ lock, arraySize, setArraySize, generateN
                 <div className={lock ? 'navigation-locked-button' : 'navigation-button'} onClick={() => { lock ? console.log("Don't click!") : bubbleSort() }}>Bubble Sort</div>
                 <div className={lock ? 'navigation-locked-button' : 'navigation-button'} onClick={() => { lock ? console.log("Don't click!") : mergeSort() }}>Merge Sort</div>
                 <div className={lock ? 'navigation-locked-button' : 'navigation-button'} onClick={() => { lock ? console.log("Don't click!") : quickSort() }}>Quick Sort</div>
-                <div className={lock ? 'navigation-locked-button' : 'navigation-button'}>Heap Sort</div>
             </div>
         </div >
     )
